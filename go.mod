@@ -1,4 +1,4 @@
-module overgroup.me/webgen
+module alexover1/blog-server
 
 go 1.23.4
 
