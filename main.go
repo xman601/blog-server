@@ -36,9 +36,6 @@ func main() {
 	fileserver := http.FileServer(http.Dir("public"))
 
 	http.Handle("/", fileserver)
-	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
-	})
 	http.HandleFunc("/api/posts", func(w http.ResponseWriter, r *http.Request) {
 		posts := loadPosts()
 
@@ -92,7 +89,7 @@ func main() {
 		}
 	})
 
-	log.Printf("Listening on port %v", port)
+	log.Printf("Listening on port :%v", port)
 	http.ListenAndServe(fmt.Sprintf(":%v", port), nil)
 }
 
