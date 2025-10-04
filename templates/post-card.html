@@ -1,0 +1,5 @@
+<div class="post-card" hx-get="/api/post/{{.Slug}}" hx-target="#content" hx-swap="innerHTML">
+  <div class="post-title">{{.Title}}</div>
+  <div class="post-date">{{.Date.Format "January 2, 2006"}}</div>
+  <div class="post-preview">{{.Preview}}</div>
+</div>
