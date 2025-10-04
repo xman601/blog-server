@@ -19,12 +19,13 @@ import (
 )
 
 var (
-	templates *template.Template
 	docsPath string
+	port int
 )
 
 func main() {
 	flag.StringVar(&docsPath, "docs", "docs", "path to directory containing markdown (.md) files")
+	flag.IntVar(&port, "port", 8000, "port to serve the http files")
 	flag.Parse()
 
 	templates, err := template.ParseGlob("templates/*.html")
@@ -35,9 +36,6 @@ func main() {
 	fileserver := http.FileServer(http.Dir("public"))
 
 	http.Handle("/", fileserver)
-	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
-	})
 	http.HandleFunc("/api/posts", func(w http.ResponseWriter, r *http.Request) {
 		posts := loadPosts()
 
@@ -91,7 +89,8 @@ func main() {
 		}
 	})
 
-	http.ListenAndServe(":8000", nil)
+	log.Printf("Listening on port :%v", port)
+	http.ListenAndServe(fmt.Sprintf(":%v", port), nil)
 }
 
 type Post struct {
