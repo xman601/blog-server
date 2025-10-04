@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  blog-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blog-server:latest
+    container_name: blog-server
+    ports:
+      - "8080:8000"
+    restart: unless-stopped
+    volumes:
+      - ./docs:/app/docs
+      - ./public:/app/public
+      - ./templates:/app/templates
+    networks:
+      - blog-network
+
+networks:
+  blog-network:
+    driver: bridge
