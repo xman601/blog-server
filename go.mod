@@ -1,4 +1,4 @@
-module alexover1/blog-server
+module github.com/alexover1/blog-server
 
 go 1.23.4
 
