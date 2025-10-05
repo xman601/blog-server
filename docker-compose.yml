@@ -4,16 +4,14 @@ services:
   blog-server:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: blog-server:latest
-    container_name: blog-server
+      dockerfile: Docker/Dockerfile
+    image: blog-server-dev:latest
+    container_name: blog-server-dev
     ports:
       - "8080:8000"
     restart: unless-stopped
     volumes:
-      - ./docs:/app/docs
-      - ./public:/app/public
-      - ./templates:/app/templates
+      - ./web-server:/app
     networks:
       - blog-network
 
