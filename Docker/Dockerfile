@@ -1,6 +1,6 @@
-FROM golang:1.23.8-alpine
+FROM golang:1-alpine
 
-RUN apk add --no-cache git ca-certificates tzdata wget
+RUN apk add --no-cache git tzdata wget
 
 WORKDIR /app
 
